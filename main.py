@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from datetime import datetime, timezone
 
 import requests
 from aiohttp import web
@@ -38,7 +39,10 @@ async def scrape(request):
             fe.id(article.select_one('h3 a').get('href'))
             fe.title(article.select_one('h3 a').text.strip())
             fe.link(href=article.select_one('h3 a').get('href'))
-            fe.description(article.select_one('div.perex p').text.strip())
+            fe.author({'name': article.select_one('footer .author-name').text.strip()})
+            fe.summary(article.select_one('div.perex p').text.strip())
+            date = datetime.strptime(article.select_one('footer small').text.strip(), '%d. %m. %Y')
+            fe.published(date.replace(tzinfo=timezone.utc))
     return web.Response(text=fg.atom_str(pretty=True).decode("utf-8"))
 
 
