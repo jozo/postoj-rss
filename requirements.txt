@@ -22,7 +22,7 @@ gunicorn==20.1.0
     # via -r requirements.in
 idna==2.10
     # via yarl
-lxml==4.6.3
+lxml==4.6.5
     # via feedgen
 multidict==5.1.0
     # via

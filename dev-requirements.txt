@@ -32,7 +32,7 @@ idna==3.1
     # via yarl
 isort==5.8.0
     # via -r dev-requirements.in
-lxml==4.6.3
+lxml==4.6.5
     # via feedgen
 multidict==5.1.0
     # via
